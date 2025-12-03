@@ -1,0 +1,54 @@
+export type GroupField = 'transaction_type' | 'status' | 'year'
+
+export type RawTransaction = {
+  transaction_type: 'invoice' | 'bill' | 'direct_expense'
+  transaction_number: string
+  amount: string
+  status: 'paid' | 'unpaid' | 'partially_paid'
+  year: string
+}
+
+export const rawTransactions: RawTransaction[] = [
+  { transaction_type: 'invoice', transaction_number: '135', amount: '490', status: 'paid', year: '2025' },
+  { transaction_type: 'invoice', transaction_number: '2025/5', amount: '340', status: 'paid', year: '2025' },
+  { transaction_type: 'invoice', transaction_number: 'FV/25/01', amount: '14.50', status: 'paid', year: '2023' },
+  { transaction_type: 'invoice', transaction_number: '661/25', amount: '1046.90', status: 'unpaid', year: '2024' },
+  { transaction_type: 'invoice', transaction_number: '3.1A01', amount: '500', status: 'partially_paid', year: '2024' },
+  { transaction_type: 'invoice', transaction_number: '3.1A4', amount: '110', status: 'partially_paid', year: '2024' },
+  { transaction_type: 'invoice', transaction_number: '3.1A02', amount: '150', status: 'partially_paid', year: '2024' },
+  { transaction_type: 'invoice', transaction_number: '3.1A04', amount: '100', status: 'unpaid', year: '2024' },
+  { transaction_type: 'invoice', transaction_number: '3.1A03', amount: '510', status: 'partially_paid', year: '2024' },
+  { transaction_type: 'bill', transaction_number: '1', amount: '100', status: 'partially_paid', year: '2025' },
+  { transaction_type: 'bill', transaction_number: '2', amount: '110', status: 'partially_paid', year: '2025' },
+  { transaction_type: 'bill', transaction_number: '3', amount: '120', status: 'paid', year: '2025' },
+  { transaction_type: 'bill', transaction_number: '4', amount: '130', status: 'partially_paid', year: '2023' },
+  { transaction_type: 'bill', transaction_number: '5', amount: '140', status: 'unpaid', year: '2023' },
+  { transaction_type: 'bill', transaction_number: '6', amount: '150', status: 'paid', year: '2024' },
+  { transaction_type: 'bill', transaction_number: '7', amount: '160', status: 'unpaid', year: '2024' },
+  { transaction_type: 'bill', transaction_number: '8', amount: '170', status: 'paid', year: '2024' },
+  { transaction_type: 'bill', transaction_number: '9', amount: '180', status: 'unpaid', year: '2024' },
+  { transaction_type: 'bill', transaction_number: '10', amount: '190', status: 'unpaid', year: '2023' },
+  { transaction_type: 'bill', transaction_number: '11', amount: '200', status: 'unpaid', year: '2023' },
+  { transaction_type: 'bill', transaction_number: '12', amount: '210', status: 'unpaid', year: '2023' },
+  { transaction_type: 'bill', transaction_number: '13', amount: '-220', status: 'paid', year: '2023' },
+  { transaction_type: 'bill', transaction_number: '14', amount: '-30.79', status: 'paid', year: '2023' },
+  { transaction_type: 'bill', transaction_number: '15', amount: '20.5', status: 'unpaid', year: '2025' },
+  { transaction_type: 'bill', transaction_number: '16', amount: '210', status: 'unpaid', year: '2025' },
+  { transaction_type: 'invoice', transaction_number: '17', amount: '60', status: 'partially_paid', year: '2024' },
+  { transaction_type: 'direct_expense', transaction_number: '18', amount: '20.5', status: 'partially_paid', year: '2024' },
+  { transaction_type: 'direct_expense', transaction_number: '19', amount: '251', status: 'partially_paid', year: '2023' },
+  { transaction_type: 'direct_expense', transaction_number: '20', amount: '26.55', status: 'partially_paid', year: '2025' },
+  { transaction_type: 'direct_expense', transaction_number: '21', amount: '230.1', status: 'unpaid', year: '2025' },
+]
+
+export const GROUP_FIELDS: GroupField[] = ['transaction_type', 'status', 'year']
+export const FIELD_LABELS: Record<GroupField, string> = {
+  transaction_type: 'Transaction Type',
+  status: 'Status',
+  year: 'Year',
+}
+export const FIELD_COLORS: Record<GroupField, string> = {
+  transaction_type: '#7c3aed',
+  status: '#0ea5e9',
+  year: '#f59e0b',
+}
