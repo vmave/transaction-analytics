@@ -1,7 +1,8 @@
 'use client'
 
-import { FIELD_LABELS, GroupField } from '@/constants/fields'
+import { FIELD_LABELS } from '@/constants/fields'
 import styles from './DataCoverage.module.css'
+import { GroupField } from '@/types/transactions'
 
 type Dimension = {
   field: GroupField

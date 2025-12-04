@@ -1,8 +1,9 @@
 'use client'
 
-import { FIELD_LABELS, GroupField } from '@/constants/fields'
+import { FIELD_LABELS } from '@/constants/fields'
 import { HeaderCell } from '@/lib/pivot'
 import styles from './PivotTable.module.css'
+import { GroupField } from '@/types/transactions'
 
 type Props = {
   headers: HeaderCell[][]

@@ -1,4 +1,4 @@
-import { GroupField, RawTransaction } from '@/data/transactions'
+import { RawTransaction, GroupField } from '@/types/transactions'
 
 export type Transaction = Omit<RawTransaction, 'amount' | 'year'> & {
   amount: number

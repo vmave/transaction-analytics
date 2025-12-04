@@ -1,12 +1,4 @@
-export type GroupField = 'transaction_type' | 'status' | 'year'
-
-export type RawTransaction = {
-  transaction_type: 'invoice' | 'bill' | 'direct_expense'
-  transaction_number: string
-  amount: string
-  status: 'paid' | 'unpaid' | 'partially_paid'
-  year: string
-}
+import { RawTransaction } from '@/types/transactions'
 
 export const rawTransactions: RawTransaction[] = [
   { transaction_type: 'invoice', transaction_number: '135', amount: '490', status: 'paid', year: '2025' },
@@ -40,3 +32,4 @@ export const rawTransactions: RawTransaction[] = [
   { transaction_type: 'direct_expense', transaction_number: '20', amount: '26.55', status: 'partially_paid', year: '2025' },
   { transaction_type: 'direct_expense', transaction_number: '21', amount: '230.1', status: 'unpaid', year: '2025' },
 ]
+

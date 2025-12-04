@@ -1,4 +1,4 @@
-import { GroupField } from '@/data/transactions'
+import { GroupField } from '@/types/transactions'
 
 export const GROUP_FIELDS: GroupField[] = ['transaction_type', 'status', 'year']
 
@@ -13,5 +13,3 @@ export const FIELD_COLORS: Record<GroupField, string> = {
   status: '#0ea5e9',
   year: '#f59e0b',
 }
-
-export type { GroupField }
