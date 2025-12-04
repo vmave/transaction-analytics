@@ -2,7 +2,8 @@
 
 import { useMemo } from 'react'
 
-import { GROUP_FIELDS, GroupField, rawTransactions } from '@/data/transactions'
+import { GROUP_FIELDS } from '@/constants/fields'
+import { GroupField, rawTransactions } from '@/data/transactions'
 import { distinctValues, parseTransactions } from '@/lib/pivot'
 
 const parsedTransactions = parseTransactions(rawTransactions)

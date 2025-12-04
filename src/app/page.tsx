@@ -1,9 +1,9 @@
 'use client'
 
-import { GroupingControls } from '@/components/GroupingControls'
-import { DataCoverage } from '@/components/DataCoverage'
-import { HomeHero } from '@/components/HomeHero'
-import { PivotTable } from '@/components/PivotTable'
+import { DataCoverage } from '@/components/data-coverage'
+import { HomeHero } from '@/components/home'
+import { GroupingControls } from '@/components/grouping'
+import { PivotTable } from '@/components/pivot'
 import { usePivotConfig } from '@/hooks/usePivotConfig'
 import styles from './page.module.css'
 

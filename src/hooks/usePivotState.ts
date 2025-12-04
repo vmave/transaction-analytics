@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 
-import { GROUP_FIELDS, GroupField } from '@/data/transactions'
+import { GROUP_FIELDS } from '@/constants/fields'
+import { GroupField } from '@/data/transactions'
 
 type Handlers = {
   handleRowFieldChange: (next: GroupField) => void

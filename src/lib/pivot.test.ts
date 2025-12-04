@@ -1,4 +1,5 @@
-import { GROUP_FIELDS, GroupField, rawTransactions } from '@/data/transactions'
+import { GROUP_FIELDS } from '@/constants/fields'
+import { GroupField, rawTransactions } from '@/data/transactions'
 import { buildPivot, distinctValues, parseTransactions } from './pivot'
 
 const transactions = parseTransactions(rawTransactions)

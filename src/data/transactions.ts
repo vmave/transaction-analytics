@@ -40,15 +40,3 @@ export const rawTransactions: RawTransaction[] = [
   { transaction_type: 'direct_expense', transaction_number: '20', amount: '26.55', status: 'partially_paid', year: '2025' },
   { transaction_type: 'direct_expense', transaction_number: '21', amount: '230.1', status: 'unpaid', year: '2025' },
 ]
-
-export const GROUP_FIELDS: GroupField[] = ['transaction_type', 'status', 'year']
-export const FIELD_LABELS: Record<GroupField, string> = {
-  transaction_type: 'Transaction Type',
-  status: 'Status',
-  year: 'Year',
-}
-export const FIELD_COLORS: Record<GroupField, string> = {
-  transaction_type: '#7c3aed',
-  status: '#0ea5e9',
-  year: '#f59e0b',
-}

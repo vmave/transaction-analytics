@@ -22,10 +22,11 @@ Focuses on the transformation layer: parsing raw values, deriving distinct dimen
 ## Project structure
 
 - `src/app/page.tsx` – main page wiring state, controls, and the pivot table.
-- `src/components/GroupingControls.tsx` – row/column grouping selectors with ordering and removal.
-- `src/components/PivotTable.tsx` – spreadsheet-like table with nested headers, totals, and sticky labels.
-- `src/data/transactions.ts` – canonical dataset and field metadata.
-- `src/lib/pivot.ts` – transformation utilities (parse, distinct values, pivot builder) with tests in `src/lib/pivot.test.ts`.
+- `src/components/grouping` – row/column grouping selectors with ordering and removal.
+- `src/components/pivot` – spreadsheet-like table with nested headers, totals, and sticky labels.
+- `src/components/home` / `src/components/data-coverage` – hero section and dimension badges.
+- `src/data/transactions.ts` – canonical dataset; UI field metadata lives in `src/constants/fields.ts`.
+- `src/lib/pivot/*` – transformation utilities (parse, distinct values, headers, pivot builder) with tests in `src/lib/pivot.test.ts`.
 
 ## Assumptions & notes
 
