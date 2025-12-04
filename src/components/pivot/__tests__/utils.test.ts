@@ -1,3 +1,4 @@
+import { ColumnLeaf } from '@/lib/pivot'
 import { getGroupSeparators, formatAmount } from '../utils'
 
 describe('pivot utils', () => {
@@ -7,11 +8,11 @@ describe('pivot utils', () => {
   })
 
   it('detects group separators', () => {
-    const leaves = [
+    const leaves: ColumnLeaf[] = [
       { key: '2023|paid', path: ['2023', 'paid'] },
       { key: '2023|unpaid', path: ['2023', 'unpaid'] },
       { key: '2024|paid', path: ['2024', 'paid'] },
     ]
-    expect(getGroupSeparators(leaves as any)).toEqual([false, false, true])
+    expect(getGroupSeparators(leaves)).toEqual([false, false, true])
   })
 })
