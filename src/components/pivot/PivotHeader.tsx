@@ -14,13 +14,14 @@ export const PivotHeader = ({ headers, rowField, separators }: Props) => {
   const headerRowCount = headers.length
 
   return (
-    <thead>
+    <thead data-testid="pivot-header">
       {headers.map((headerRow, rowIndex) => (
-        <tr key={`header-${rowIndex}`}>
+        <tr key={`header-${rowIndex}`} data-testid={`pivot-header-row-${rowIndex}`}>
           {rowIndex === 0 && (
             <th
               rowSpan={headerRowCount}
               className={`${styles.cell} ${styles.headerCell} ${styles.rowHeading} ${styles.rowHeadingSticky} ${styles.sticky}`}
+              data-testid="pivot-header-row-heading"
             >
               {FIELD_LABELS[rowField]}
             </th>
@@ -33,6 +34,7 @@ export const PivotHeader = ({ headers, rowField, separators }: Props) => {
                 key={`${cell.label}-${idx}`}
                 colSpan={cell.span}
                 className={`${styles.cell} ${styles.headerCell} ${styles.sticky} ${separatorClass}`}
+                data-testid={`pivot-header-cell-${rowIndex}-${idx}`}
               >
                 <div className={styles.headerWrapper}>
                   <span>{cell.label}</span>

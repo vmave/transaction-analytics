@@ -19,7 +19,7 @@ export const PivotTable = ({ result, rowField, columnFields }: Props) => {
   const separators = getGroupSeparators(result.columnLeaves)
 
   return (
-    <div className={styles.tableCard}>
+    <div className={styles.tableCard} data-testid="pivot-table">
       <div className={styles.tableHeader}>
         <div>
           <p className="eyebrow">Report</p>
@@ -33,8 +33,8 @@ export const PivotTable = ({ result, rowField, columnFields }: Props) => {
         </div>
       </div>
 
-      <div className={styles.tableScroll}>
-        <table className={styles.pivot}>
+      <div className={styles.tableScroll} data-testid="pivot-scroll">
+        <table className={styles.pivot} data-testid="pivot-grid">
           <PivotHeader headers={result.headers} rowField={rowField} separators={separators} />
           <tbody>
             {result.rows.map((rowValue) => (

@@ -13,18 +13,25 @@ type Props = {
 }
 
 export const PivotRow = ({ rowValue, columnLeaves, cells, rowTotals, separators }: Props) => (
-  <tr>
-    <th className={`${styles.cell} ${styles.headerCell} ${styles.rowHeading} ${styles.rowHeadingSticky}`} scope="row">
+  <tr data-testid={`pivot-row-${rowValue}`}>
+    <th
+      className={`${styles.cell} ${styles.headerCell} ${styles.rowHeading} ${styles.rowHeadingSticky}`}
+      scope="row"
+      data-testid="pivot-row-heading"
+    >
       {rowValue}
     </th>
     {columnLeaves.map((leaf, idx) => (
       <td
         key={`${rowValue}-${leaf.key}`}
         className={`${styles.cell} ${styles.bodyCell} ${separators[idx] ? styles.groupEdge : ''}`}
+        data-testid={`pivot-row-cell-${rowValue}-${leaf.key}`}
       >
         {formatAmount(cells[rowValue][leaf.key].amount)}
       </td>
     ))}
-    <td className={`${styles.cell} ${styles.total}`}>{formatAmount(rowTotals[rowValue])}</td>
+    <td className={`${styles.cell} ${styles.total}`} data-testid={`pivot-row-total-${rowValue}`}>
+      {formatAmount(rowTotals[rowValue])}
+    </td>
   </tr>
 )

@@ -1,6 +1,6 @@
 # Transaction Analytics Pivot
 
- Configurable pivot table over a transactions dataset. Built with Next.js (App Router) + TypeScript, with a small utility layer for grouping and aggregation and Jest tests for the data logic.
+Configurable pivot table over a small transactions dataset. Built with Next.js (App Router) + TypeScript. Includes a lightweight transformation layer for grouping/aggregation and Jest tests for core logic.
 
 ## Running the app
 
@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Then open http://localhost:3000. The UI runs entirely in the browser off a static data source (`src/data/transactions.ts`), but the aggregation layer is structured to be swapped for an API call.
+Then open `http://localhost:3000`. The UI uses the static data from `src/data/transactions.ts` and runs fully in the browser.
 
 ## Tests
 
@@ -17,24 +17,34 @@ Then open http://localhost:3000. The UI runs entirely in the browser off a stati
 npm test
 ```
 
-Focuses on the transformation layer: parsing raw values, deriving distinct dimension values, and building pivot totals (including multi-level columns).
+## Covers
+
+- data utilities (parse, distinct values, headers, pivot builder)
+- UI components (hero, coverage badges, grouping controls, pivot table)
 
 ## Project structure
 
-- `src/app/page.tsx` – main page wiring state, controls, and the pivot table.
-- `src/components/grouping` – row/column grouping selectors with ordering and removal.
-- `src/components/pivot` – spreadsheet-like table with nested headers, totals, and sticky labels.
-- `src/components/home` / `src/components/data-coverage` – hero section and dimension badges.
-- `src/data/transactions.ts` – canonical dataset; UI field metadata lives in `src/constants/fields.ts`.
-- `src/lib/pivot/*` – transformation utilities (parse, distinct values, headers, pivot builder) with tests in `src/lib/pivot.test.ts`.
+- `src/app/page.tsx` — page wiring state, controls, and table
+- `src/constants/fields.ts` — field labels
+- `src/components/grouping` — row/column grouping controls
+- `src/components/pivot` — table with nested headers, totals, sticky labels
+- `src/components/home`, `src/components/data-coverage` — hero & dimension badges
+- `src/data/transactions.ts` — mocked dataset
+- `src/lib/pivot/` — parsing, distinct extraction, header builder, aggregator (with tests)
+- `src/hooks/` — state (`usePivotState`), data (`usePivotData`), aggregation (`usePivotResult`), composition (`usePivotConfig`)
+- **CSS** — globals in `globals.css`, component-level styles in `*.module.css`
 
 ## Assumptions & notes
 
-- Dataset is mocked locally.
-- Column grouping requires at least one field; row grouping is a single field. Axis-specific uniqueness is enforced to avoid duplicate selections on the same axis.
-- Amounts are parsed as numbers for aggregation; sums include negative values.
+- Dataset is local and mocked  
+- Row grouping uses a single field; column grouping requires at least one  
+- Duplicate fields on the same axis are not allowed  
+- Amounts are parsed as numbers and summed, including negative values  
 
 ## Next steps (given more time)
 
-- Extend filters (e.g., by year or type) and add CSV export.
-- Add column formatting controls (currency/precision) and subtotals per hierarchy level.
+- Add filters (e.g. by year or type) and CSV export  
+- Add smooth transitions when grouping changes  
+- Persist table configuration in `localStorage`  
+- Move styling into a design system or CSS modules  
+- Improve accessibility (ARIA roles, keyboard focus handling)
