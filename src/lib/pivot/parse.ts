@@ -1,4 +1,4 @@
-import { RawTransaction } from '@/data/transactions'
+import { RawTransaction } from '@/types/transactions'
 import { Transaction } from './types'
 
 // Convert amount strings to numbers for aggregation.
