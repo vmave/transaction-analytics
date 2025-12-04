@@ -2,8 +2,8 @@
 
 import { useMemo } from 'react'
 
-import { GroupField } from '@/data/transactions'
 import { PivotResult, buildPivot, parseTransactions } from '@/lib/pivot'
+import { GroupField } from '@/types/transactions'
 
 // Recomputes pivot output when configuration changes.
 export const usePivotResult = (

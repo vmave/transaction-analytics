@@ -1,7 +1,8 @@
 'use client'
 
-import { FIELD_LABELS, GROUP_FIELDS, GroupField } from '@/constants/fields'
+import { FIELD_LABELS, GROUP_FIELDS } from '@/constants/fields'
 import styles from './GroupingControls.module.css'
+import { GroupField } from '@/types/transactions'
 
 type Props = {
   rowField: GroupField

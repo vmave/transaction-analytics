@@ -1,5 +1,6 @@
-import { GROUP_FIELDS, GroupField } from '@/constants/fields'
+import { GROUP_FIELDS } from '@/constants/fields'
 import { Transaction } from './types'
+import { GroupField } from '@/types/transactions'
 
 // Sorted distinct values for a given field.
 export const distinctValues = (transactions: Transaction[], field: GroupField): string[] => {

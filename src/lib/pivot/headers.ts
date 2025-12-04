@@ -1,4 +1,4 @@
-import { GroupField } from '@/data/transactions'
+import { GroupField } from '@/types/transactions'
 import { ColumnLeaf, HeaderCell, Transaction } from './types'
 
 type ColumnNode = {

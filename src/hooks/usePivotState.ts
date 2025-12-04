@@ -3,7 +3,7 @@
 import { useState } from 'react'
 
 import { GROUP_FIELDS } from '@/constants/fields'
-import { GroupField } from '@/data/transactions'
+import { GroupField } from '@/types/transactions'
 
 type Handlers = {
   handleRowFieldChange: (next: GroupField) => void

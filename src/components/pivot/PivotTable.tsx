@@ -1,12 +1,13 @@
 'use client'
 
-import { FIELD_LABELS, GroupField } from '@/constants/fields'
+import { FIELD_LABELS } from '@/constants/fields'
 import { PivotResult } from '@/lib/pivot'
 import { PivotHeader } from './PivotHeader'
 import { PivotRow } from './PivotRow'
 import { PivotSummaryRow } from './PivotSummaryRow'
 import { getGroupSeparators } from './utils'
 import styles from './PivotTable.module.css'
+import { GroupField } from '@/types/transactions'
 
 type Props = {
   result: PivotResult
