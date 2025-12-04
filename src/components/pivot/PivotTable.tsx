@@ -2,6 +2,10 @@
 
 import { FIELD_LABELS, GroupField } from '@/constants/fields'
 import { PivotResult } from '@/lib/pivot'
+import { PivotHeader } from './PivotHeader'
+import { PivotRow } from './PivotRow'
+import { PivotSummaryRow } from './PivotSummaryRow'
+import { getGroupSeparators } from './utils'
 
 type Props = {
   result: PivotResult
@@ -9,22 +13,9 @@ type Props = {
   columnFields: GroupField[]
 }
 
-const currency = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2,
-})
-
-const formatAmount = (value: number) => currency.format(value)
-
+// Orchestrates pivot header, body rows, and summary row.
 export const PivotTable = ({ result, rowField, columnFields }: Props) => {
-  const headerRowCount = result.headers.length
-  const groupSeparators = result.columnLeaves.map((leaf, idx) => {
-    if (idx === 0) return false
-    const prev = result.columnLeaves[idx - 1]
-    return leaf.path[0] !== prev.path[0]
-  })
+  const separators = getGroupSeparators(result.columnLeaves)
 
   return (
     <div className="table-card">
@@ -43,56 +34,28 @@ export const PivotTable = ({ result, rowField, columnFields }: Props) => {
 
       <div className="table-scroll">
         <table className="pivot">
-          <thead>
-            {result.headers.map((headerRow, rowIndex) => (
-              <tr key={`header-${rowIndex}`}>
-                {rowIndex === 0 && (
-                  <th rowSpan={headerRowCount} className="row-heading sticky">
-                    {FIELD_LABELS[rowField]}
-                  </th>
-                )}
-                {headerRow.map((cell, idx) => {
-                  const isLastHeaderRow = rowIndex === headerRowCount - 1
-                  const separatorClass = isLastHeaderRow && groupSeparators[idx] ? ' group-edge' : ''
-                  return (
-                    <th key={`${cell.label}-${idx}`} colSpan={cell.span} className={`sticky${separatorClass}`}>
-                      <div className="header-cell">
-                        <span>{cell.label}</span>
-                      </div>
-                    </th>
-                  )
-                })}
-                {rowIndex === 0 && (
-                  <th rowSpan={headerRowCount} className="total sticky">
-                    Row total
-                  </th>
-                )}
-              </tr>
-            ))}
-          </thead>
+          <PivotHeader
+            headers={result.headers}
+            rowField={rowField}
+            separators={separators}
+          />
           <tbody>
             {result.rows.map((rowValue) => (
-              <tr key={rowValue}>
-                <th className="row-heading sticky" scope="row">
-                  {rowValue}
-                </th>
-                {result.columnLeaves.map((leaf, idx) => (
-                  <td key={`${rowValue}-${leaf.key}`} className={groupSeparators[idx] ? 'group-edge' : ''}>
-                    {formatAmount(result.cells[rowValue][leaf.key].amount)}
-                  </td>
-                ))}
-                <td className="total">{formatAmount(result.rowTotals[rowValue])}</td>
-              </tr>
+              <PivotRow
+                key={rowValue}
+                rowValue={rowValue}
+                columnLeaves={result.columnLeaves}
+                cells={result.cells}
+                rowTotals={result.rowTotals}
+                separators={separators}
+              />
             ))}
-            <tr className="summary">
-              <th className="row-heading sticky">Column total</th>
-              {result.columnLeaves.map((leaf, idx) => (
-                <td key={`total-${leaf.key}`} className={groupSeparators[idx] ? 'group-edge' : ''}>
-                  {formatAmount(result.columnTotals[leaf.key])}
-                </td>
-              ))}
-              <td className="total">{formatAmount(result.grandTotal)}</td>
-            </tr>
+            <PivotSummaryRow
+              columnLeaves={result.columnLeaves}
+              columnTotals={result.columnTotals}
+              grandTotal={result.grandTotal}
+              separators={separators}
+            />
           </tbody>
         </table>
       </div>

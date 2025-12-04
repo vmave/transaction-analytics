@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
+import { PivotTable } from '../PivotTable'
+import { PivotResult } from '@/lib/pivot'
 
-import { PivotTable } from './PivotTable'
-
-const sampleResult = {
+const sampleResult: PivotResult = {
   rows: ['row1'],
   columnLeaves: [{ key: 'col1', path: ['col1'] }],
   headers: [[{ label: 'col1', span: 1 }]],
@@ -14,10 +14,18 @@ const sampleResult = {
 
 describe('PivotTable', () => {
   it('renders headers and totals', () => {
-    render(<PivotTable result={sampleResult as any} rowField="transaction_type" columnFields={['status']} />)
+    render(
+      <PivotTable
+        result={sampleResult}
+        rowField="transaction_type"
+        columnFields={['status']}
+      />,
+    )
 
     expect(screen.getByText(/row groups/i)).toBeInTheDocument()
     expect(screen.getByText('Row total')).toBeInTheDocument()
-    expect(screen.getByText('$10.00')).toBeInTheDocument()
+
+    const amounts = screen.getAllByText('$10.00')
+    expect(amounts.length).toBeGreaterThan(0)
   })
 })

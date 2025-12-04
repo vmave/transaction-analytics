@@ -66,7 +66,11 @@ export const GroupingControls = ({
                   </option>
                 ))}
               </select>
-              <button className="ghost danger" onClick={() => onRemoveColumnField(idx)} disabled={columnFields.length === 1}>
+              <button
+                className="ghost danger"
+                onClick={() => onRemoveColumnField(idx)}
+                disabled={columnFields.length === 1}
+              >
                 Remove
               </button>
             </div>

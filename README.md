@@ -30,12 +30,11 @@ Focuses on the transformation layer: parsing raw values, deriving distinct dimen
 
 ## Assumptions & notes
 
-- Dataset is mocked locally; wiring to a backend would replace the in-memory `parseTransactions` call while keeping the pivot builder intact.
+- Dataset is mocked locally.
 - Column grouping requires at least one field; row grouping is a single field. Axis-specific uniqueness is enforced to avoid duplicate selections on the same axis.
 - Amounts are parsed as numbers for aggregation; sums include negative values.
 
 ## Next steps (given more time)
 
-- Add server-side API + persistence (Django/PostgreSQL) and hydrate the UI from it.
 - Extend filters (e.g., by year or type) and add CSV export.
 - Add column formatting controls (currency/precision) and subtotals per hierarchy level.
