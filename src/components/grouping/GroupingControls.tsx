@@ -1,6 +1,7 @@
 'use client'
 
 import { FIELD_LABELS, GROUP_FIELDS, GroupField } from '@/constants/fields'
+import styles from './GroupingControls.module.css'
 
 type Props = {
   rowField: GroupField
@@ -19,25 +20,25 @@ export const GroupingControls = ({
   onAddColumnField,
   onRemoveColumnField,
 }: Props) => (
-  <div className="panel" data-testid="grouping-controls">
-    <div className="panel-header">
+  <div className={styles.panel} data-testid="grouping-controls">
+    <div className={styles.panelHeader}>
       <div>
         <p className="eyebrow">Configuration</p>
         <h2>Choose how to group the report</h2>
       </div>
-      <button className="ghost" onClick={onAddColumnField} disabled={columnFields.length >= GROUP_FIELDS.length}>
+      <button className={styles.ghost} onClick={onAddColumnField} disabled={columnFields.length >= GROUP_FIELDS.length}>
         + Add column level
       </button>
     </div>
 
-    <div className="control-grid">
+    <div className={styles.controlGrid}>
       <div>
-        <label className="label" htmlFor="row-field">
+        <label className={styles.label} htmlFor="row-field">
           Row grouping
         </label>
         <select
           id="row-field"
-          className="select"
+          className={styles.select}
           value={rowField}
           onChange={(event) => onRowFieldChange(event.target.value as GroupField)}
         >
@@ -47,16 +48,16 @@ export const GroupingControls = ({
             </option>
           ))}
         </select>
-        <p className="hint">One field at a time</p>
+        <p className={styles.hint}>One field at a time</p>
       </div>
 
       <div>
-        <label className="label">Column grouping</label>
-        <div className="stack">
+        <label className={styles.label}>Column grouping</label>
+        <div className={styles.stack}>
           {columnFields.map((field, idx) => (
-            <div className="column-field" key={`${field}-${idx}`}>
+            <div className={styles.columnField} key={`${field}-${idx}`}>
               <select
-                className="select"
+                className={styles.select}
                 value={field}
                 onChange={(event) => onColumnFieldChange(idx, event.target.value as GroupField)}
               >
@@ -67,7 +68,7 @@ export const GroupingControls = ({
                 ))}
               </select>
               <button
-                className="ghost danger"
+                className={`${styles.ghost} ${styles.danger}`}
                 onClick={() => onRemoveColumnField(idx)}
                 disabled={columnFields.length === 1}
               >
@@ -76,7 +77,7 @@ export const GroupingControls = ({
             </div>
           ))}
         </div>
-        <p className="hint">Order defines column nesting</p>
+        <p className={styles.hint}>Order defines column nesting</p>
       </div>
     </div>
   </div>

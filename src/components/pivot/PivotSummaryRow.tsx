@@ -2,6 +2,7 @@
 
 import { ColumnLeaf, PivotResult } from '@/lib/pivot'
 import { formatAmount } from './utils'
+import styles from './PivotTable.module.css'
 
 type Props = {
   columnLeaves: ColumnLeaf[]
@@ -11,13 +12,13 @@ type Props = {
 }
 
 export const PivotSummaryRow = ({ columnLeaves, columnTotals, grandTotal, separators }: Props) => (
-  <tr className="summary">
-    <th className="row-heading sticky">Column total</th>
+  <tr className={styles.summary}>
+    <th className={`${styles.cell} ${styles.headerCell} ${styles.rowHeading} ${styles.rowHeadingSticky}`}>Column total</th>
     {columnLeaves.map((leaf, idx) => (
-      <td key={`total-${leaf.key}`} className={separators[idx] ? 'group-edge' : ''}>
+      <td key={`total-${leaf.key}`} className={`${styles.cell} ${styles.bodyCell} ${separators[idx] ? styles.groupEdge : ''}`}>
         {formatAmount(columnTotals[leaf.key])}
       </td>
     ))}
-    <td className="total">{formatAmount(grandTotal)}</td>
+    <td className={`${styles.cell} ${styles.total}`}>{formatAmount(grandTotal)}</td>
   </tr>
 )

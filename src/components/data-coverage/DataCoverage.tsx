@@ -1,7 +1,7 @@
 'use client'
 
 import { FIELD_LABELS, GroupField } from '@/constants/fields'
-import styles from '@/app/page.module.css'
+import styles from './DataCoverage.module.css'
 
 type Dimension = {
   field: GroupField
@@ -13,20 +13,20 @@ type Props = {
 }
 
 export const DataCoverage = ({ dimensions }: Props) => (
-  <div className="panel" data-testid="data-coverage">
-    <div className="panel-header">
+  <div className={styles.panel} data-testid="data-coverage">
+    <div className={styles.panelHeader}>
       <div>
         <p className="eyebrow">Data coverage</p>
         <h2>Dynamic values derived from data</h2>
       </div>
-      <span className="muted">No hardcoded statuses, years, or types</span>
+      <span className={styles.muted}>No hardcoded statuses, years, or types</span>
     </div>
     <div className={styles.badges}>
       {dimensions.map((dimension) => (
-        <div key={dimension.field} className="chip-group">
-          <span className="chip chip-label">{FIELD_LABELS[dimension.field]}</span>
+        <div key={dimension.field} className={styles.chipGroup}>
+          <span className={`${styles.chip} ${styles.chipLabel}`}>{FIELD_LABELS[dimension.field]}</span>
           {dimension.values.map((value) => (
-            <span key={value} className="chip">
+            <span key={value} className={styles.chip}>
               {value}
             </span>
           ))}
